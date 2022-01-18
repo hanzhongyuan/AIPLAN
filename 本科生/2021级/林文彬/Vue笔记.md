@@ -164,3 +164,35 @@ v-bind:属性名=表达式
 
 则用v-for="item in objarr" {{item.name}}输出
 
+###v-model
+获取和设置表单元素的值（双向数据绑定）
+两边都会更新
+
+    <div id="app">
+        <input type="text" v-model="message">
+    </div>
+
+    var app=new Vue({
+        el:"#app",
+        data:{message:"..."}
+    })
+
+再输入框中输入可以改变Vue中message的值，同理，因为双向绑定，当vue中message的值改变时，输入框中的值也会改变
+
+##axios
+引入axios
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+发送请求
+
+get请求
+axios.get(地址?查询字符串（如key=value).then(function(response){},function(err){})
+
+post请求
+axios.post(地址，对象(如{key:value})).then(function(response))
+
+若请求成功触发，则执行第一个函数，返回接收的数据
+若请求失败，则执行第二个函数，返回错误信息
+
+在axios的回调函数中的this已经改变，不能获取到data中的数据，可以用var that=this 把前面指代vue的this保存起来，使用that就能获取到data中的数据了
